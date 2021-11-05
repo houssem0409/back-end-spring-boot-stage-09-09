@@ -3,7 +3,7 @@ package com.bezkoder.springjwt.repository;
 import java.util.List;
 import java.util.Optional;
 
-import com.bezkoder.springjwt.models.Role;
+import com.bezkoder.springjwt.models.Roles;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +25,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	//Optional<User> findUserByUsername(String name);
 
-	List<User> findUsersByRoles(Role role);
+	List<User> findUsersByRoles(Roles roles);
 
 
 

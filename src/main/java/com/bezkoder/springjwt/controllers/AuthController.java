@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.bezkoder.springjwt.models.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bezkoder.springjwt.models.ERole;
-import com.bezkoder.springjwt.models.Role;
+import com.bezkoder.springjwt.models.Roles;
 import com.bezkoder.springjwt.models.User;
 import com.bezkoder.springjwt.payload.request.LoginRequest;
 import com.bezkoder.springjwt.payload.request.SignupRequest;
@@ -88,38 +89,38 @@ public class AuthController {
 					.badRequest()
 					.body(new MessageResponse("Error: Email is already in use!"));
 		}
-
+Comment c = new Comment();
 		// Create new user's account
 		User user = new User(signUpRequest.getUsername(),
 				signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()));
 
 		Set<String> strRoles = signUpRequest.getRole();
-		Set<Role> roles = new HashSet<>();
+		Set<Roles> roles = new HashSet<>();
 
 		if (strRoles == null) {
-			Role userRole = roleRepository.findByName(ERole.ROLE_STUDENT)
+			Roles userRoles = roleRepository.findByName(ERole.ROLE_STUDENT)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-			roles.add(userRole);
+			roles.add(userRoles);
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
 					case "admin":
-						Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+						Roles adminRoles = roleRepository.findByName(ERole.ROLE_ADMIN)
 								.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-						roles.add(adminRole);
+						roles.add(adminRoles);
 
 						break;
 					case "mod":
-						Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+						Roles modRoles = roleRepository.findByName(ERole.ROLE_PARENT)
 								.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-						roles.add(modRole);
+						roles.add(modRoles);
 
 						break;
 					default:
-						Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+						Roles userRoles = roleRepository.findByName(ERole.ROLE_TEACHER)
 								.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-						roles.add(userRole);
+						roles.add(userRoles);
 				}
 			});
 		}

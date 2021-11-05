@@ -1,6 +1,5 @@
 package com.bezkoder.springjwt.models;
 
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,11 +38,12 @@ public class User {
 	@Size(max = 120)
 	private String password;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY  )
 	@JoinTable(	name = "user_roles",
 			joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles = new HashSet<>();
+			inverseJoinColumns = @JoinColumn(name = "role_id")
+)
+	private Set<Roles> roles = new HashSet<>();
 
 	public User() {
 	}
@@ -89,11 +89,11 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<Role> getRoles() {
+	public Set<Roles> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Role> roles) {
+	public void setRoles(Set<Roles> roles) {
 		this.roles = roles;
 	}
 

@@ -17,9 +17,8 @@ public class Comment {
     private Long idComment;
     private String Message;
     private Date DateComment;
-    private String Enum;
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    User user;
+    private EComment name;
+    private Long userId;
 
 
 }

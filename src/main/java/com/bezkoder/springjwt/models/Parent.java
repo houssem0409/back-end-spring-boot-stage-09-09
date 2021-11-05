@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-@DiscriminatorValue(value="PRT")
+@DiscriminatorValue(value="ROLE_PARENT")
 public class Parent extends User{
     private int numCin;
     @OneToMany(mappedBy = "parent")

@@ -1,2 +1,6 @@
-package com.bezkoder.springjwt.dto;public class TeacherDTO {
+package com.bezkoder.springjwt.dto;
+
+public class TeacherDTO extends UserDTO{
+
 }
+

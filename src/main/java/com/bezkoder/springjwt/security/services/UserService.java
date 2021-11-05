@@ -1,7 +1,7 @@
 package com.bezkoder.springjwt.security.services;
 
 import com.bezkoder.springjwt.models.ERole;
-import com.bezkoder.springjwt.models.Role;
+import com.bezkoder.springjwt.models.Roles;
 import com.bezkoder.springjwt.models.User;
 import com.bezkoder.springjwt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
+    public UserRepository userRepository;
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -35,7 +35,7 @@ public class UserService {
 
 
     public List<User> getStudents() {
-        Role role = new Role(1L, ERole.ROLE_ADMIN);
-        return  userRepository.findUsersByRoles(role);
+        Roles roles = new Roles(1L, ERole.ROLE_ADMIN);
+        return  userRepository.findUsersByRoles(roles);
     }
 }

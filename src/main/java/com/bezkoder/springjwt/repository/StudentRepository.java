@@ -1,2 +1,6 @@
-package com.bezkoder.springjwt.repository;public interface StudentRepository {
+package com.bezkoder.springjwt.repository;
+import com.bezkoder.springjwt.models.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
 }
